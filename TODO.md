@@ -1,0 +1,39 @@
+main page		/
+	- option to create a qr (link) for video presentation
+	- blank page with choices to create a gift, sign in and sign up
+	- if clicked create a gift before signing in show a sign in form pop up
+	- if already signed in show option to sign out instead of sign in or sign up
+
+presentation page	/presentation?id=....
+	- before showing the presentation ask for a password
+	- this page will include the video presentation for the gifted person
+	- if the date is yet to come then redirect to the timer page
+	- display the page as it is created in the presentation creation page
+
+timer page		/timer
+	- this page will just show the timer to the user. When the timer runs out display a button to go to the presentation.
+	- all black page with a white timer. button will spawn below the timer.
+
+presentation creation page	/presentation-creation
+	- show the page to create a presentation
+	- save the html and css file to the presentations/{id} folder in the project
+	- create a qr for the user and create a password for the presentation
+	- show a wordpress like page to edit a page. Just add options to change the background image or color, option to link a youtube video to the page.
+	- show an option to print the qr
+
+login page		/user/signin
+- simple login page
+- show form for logging in and option to sign up
+
+sign up page		/user/signup
+- simple user creation page
+- show form for sign up and option to sign in
+
+users presentation trace page	/user/presentations
+	- show users all presentations and give info about them ( user can see the url and generate qr if user wants, user can delete the presentation, user can see the presentation without entering the password for the presentation)
+
+
+
+
+
+
