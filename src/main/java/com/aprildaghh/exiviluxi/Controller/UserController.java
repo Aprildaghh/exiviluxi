@@ -8,21 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @RequestMapping("/signin")
-    public String signInPage()
-    {
-        return "sign-in";
+    public String signin(){
+        return null;
     }
 
     @RequestMapping("/signup")
-    public String signUpPage()
-    {
-        return "sign-up";
+    public String signup(){
+        return null;
     }
 
-    @RequestMapping("/presentations")
-    public String presentationsPageForUser()
-    {
-        return "presentations-for-user";
+    @RequestMapping("/logout")
+    public String logout(){
+        return null;
     }
 
 }

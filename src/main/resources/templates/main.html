@@ -1,0 +1,121 @@
+<!doctype html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exiviluxi</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><h1>exiviluxi</h1></div>
+        <div class="sign-in-bar">
+
+            <div class="authorized" th:if="${#authentication}">
+                <form th:action="@{/logout}">
+                    <button th:target="@{/user/logout}" class="logout">Log Out</button>
+                </form>
+            </div>
+        
+            <ul class="not-authorized" th:if="${#authentication == null}">
+                <li><button class="signin">Sign In</button></li>
+                <li><button class="signup">Sign Up</button></li>
+            </ul>
+        
+        </div>
+    </nav>
+
+    <main>
+        <div class="content">
+            <button class="create-btn">Create Presentation</button>
+            <button class="help-button">What does that button do?</button>
+            
+            <div class="informative">
+                <ul>
+                    <li>Create a presentation like page or a video with a nice and memorial background to send it to your loved ones.</li>
+                    <li>After creating your special presentation take the generated qr code and give it to your loved one as a gift with a basket of flowers.</li>
+                    <li>The site will be locked till the specified time.</li>
+                    <li>After the timer is finished and the needed password is entered your loved one can see how much you love them.</li>
+                    <li>Only thing you need to do is to just Click the button that says "Create Presentation"!</li>
+                </ul>
+            </div>
+            
+        </div>
+    </main>
+
+    <div class="signinModal">
+        <form th:action="@{/user/signin}" th:object="${user}" method="POST" class="signin-form">
+            
+            
+            <div class="wrong-credentials-error" th:if="#{param.wrong-credentials}">
+                <h3>Wrong Credentials</h3>
+            </div>
+            
+            <div class="signin-username">
+                <label for="signin-username">Username: </label>
+                <input th:field="*{username}" placeholder="USERNAME" type="text" id="signin-username">
+            </div>
+            <div class="signin-password">
+                <label for="signin-password">Password: </label>
+                <input th:field="*{password}" placeholder="PASSWORD" type="password" id="signin-password">
+            </div>
+            <div class="signin-buttons">
+                <button class="signin-to-signup">Sign Up</button>
+                <button class="signin-submit" type="submit">Sign In</button>    
+            </div>
+        </form>
+    </div>
+
+
+    <div class="signupModal">
+        <form th:action="@{/user/signup}" th:object="${user}" method="POST" class="signup-form">
+            
+            <div th:if="${registrationError}" class="signup-error">
+                <span th:text="${registrationError}"></span>
+            </div>
+
+            <div class="signup-username">
+                <label for="signup-username">Username: </label>
+                <input th:field="*{username}" type="text" placeholder="username" id="signup-username">
+                <div th:if="${#fields.hasErrors('username')}" class="signup-username-errors">
+					<ul>
+						<li th:each="err : ${#fields.errors('userName')}" th:text="'User name ' + ${err}"></li>
+					</ul>						
+				</div>
+            </div>
+            
+            <div class="signup-password">
+                <label for="signup-password">Password: </label>
+                <input th:field="*{password}" type="password" placeholder="password" id="signup-password">    
+                <div th:if="${#fields.hasErrors('password')}" class="signup-password-errors">
+					<ul>
+					  <li th:each="err : ${#fields.errors('password')}" th:text="'Password ' + ${err}"></li>
+					</ul>						
+				</div>
+            </div>
+            
+            <div class="signup-matching-password">
+                <label for="signup-matching-password">Password Again: </label>
+                <input th:field="*{matchingPassword}" type="password" id="signup-matching-password">
+                <div th:if="${#fields.hasErrors('matchingPassword')}" class="signup-matching-password-errors">
+                    <ul>
+                    <li th:each="err : ${#fields.errors('matchingPassword')}" th:text="'Password ' + ${err}"></li>
+                    </ul>						
+                </div>
+            </div>
+            
+            <div class="signup-buttons">
+                <button class="signup-to-signin">Sign In</button>
+                <button class="signup-submit" type="submit">Sign Up</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+:root {
+    --white: #fff;
+    --black: #000000;
+    --sec: #1f1e1e;
+    --third: #717070;
+    --fourth: #858484;
+    --fifth: #AAA9A9;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+
+}
+
+nav {
+    background-color: var(--sec);
+    border-bottom: #000000 solid 1px;
+    width: 100%;
+    height: 9vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    margin: 0;
+    line-height: 9vh;
+    padding: 0 1rem;
+    user-select: none;
+}
+
+.logo > h1{
+    margin: 0;
+    text-transform: uppercase;
+    color: var(--fifth);
+    font-weight: bolder;
+}
+
+.not-authorized {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    line-height: 9vh;
+    margin: 0;
+}
+
+.not-authorized li {
+    padding: 0 0.5rem;
+}
+
+.signin {
+    outline: none;
+    border: none;
+    background-color: var(--third);
+    height: 5vh;
+    border-radius: 5px;
+    color: var(--black);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.signup {
+    outline: none;
+    border: none;
+    outline: none;
+    background-color: var(--sec);
+    color: var(--third);
+    height: 5vh;
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.authorized {
+    line-height: 9vh;
+    margin: 0;
+}
+
+.logout {
+    margin: 0 2rem 0 0;
+    outline: none;
+    border: none;
+    background-color: var(--third);
+    height: 5vh;
+    border-radius: 5px;
+    color: var(--black);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+main {
+    height: 90vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 35vh;
+}
+
+.create-btn {
+    outline: none;
+    border: var(--fourth) solid 1.5px;
+    background-color: var(--sec);
+    color: var(--fifth);
+    border-radius: 5px;
+    height: 10rem;
+    width: 25%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.help-button {
+    outline: none;
+    border: var(--fourth) solid 1.5px;
+    background-color: var(--sec);
+    color: var(--fifth);
+    border-radius: 5px;
+    height: 3rem;
+    width: 10%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    cursor: pointer;
+}
+
+.informative {
+    color: var(--black);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    left: 0;
+    top: 0;
+    background-color:#aaa9a92c;
+    text-align: center;
+    justify-content: center;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+.informative ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15% auto;
+    width: 50%;
+    align-self: center;
+    background-color: #717070;
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.informative ul li {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--sec);
+    text-align: center;
+}
+
+@keyframes modalOpen {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+@keyframes informativeSlideDown {
+    0% {
+        top: 0;
+        height: 100vh;
+    }
+    100% {
+        top: 100vh;
+        height: 0;
+    }
+}
+
+.signinModal {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    left: 0;
+    top: 0;
+    background-color:#aaa9a92c;
+    text-align: center;
+    justify-content: center;
+    z-index: 1;
+    display: none;
+}
+
+.signinModal form {
+    margin: 10% auto;
+    padding: 5rem;
+    background-color: #717070;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.signin-username, .signin-password {
+    margin: 0 auto .5rem auto;
+    padding: 0 auto;
+    width: 50%;
+    justify-content: center;
+}
+
+.signin-username input, .signin-password input {
+    outline: none;
+    border: none;
+    border-bottom: var(--black) solid 1px;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+
+.signin-buttons {
+    display: flex;
+    flex-direction: row;
+}
+.signin-to-signup, .signin-submit {
+    margin: 1rem auto 0 auto;
+    padding: .5rem 1rem;
+    width: 25%;
+    justify-content: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #1f1e1e;
+    color: var(--fifth);
+    cursor: pointer;
+}
+
+.wrong-credentials-error h3 {
+    color: darkred;
+    height: 2rem;
+}
+
+.signupModal {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    left: 0;
+    top: 0;
+    background-color:#aaa9a92c;
+    text-align: center;
+    justify-content: center;
+    z-index: 1;
+    display: none;
+}
+
+.signupModal form {
+    margin: 10% auto;
+    padding: 5rem;
+    background-color: #717070;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.signup-username, .signup-password {
+    margin: 0 auto .5rem auto;
+    padding: 0 auto;
+    width: 50%;
+    justify-content: center;
+}
+
+.signup-username input, .signup-password input {
+    outline: none;
+    border: none;
+    border-bottom: var(--black) solid 1px;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+
+.signup-buttons {
+    display: flex;
+    flex-direction: row;
+}
+.signup-to-signin, .signup-submit {
+    margin: 1rem auto 0 auto;
+    padding: .5rem 1rem;
+    width: 25%;
+    justify-content: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #1f1e1e;
+    color: var(--fifth);
+    cursor: pointer;
+}
+
+.signup-username-errors ul,
+.signup-password-errors ul,
+.signup-matching-password-errors ul {
+    list-style: none;
+    color: darkred;
+}
+
+@keyframes signSlideDown {
+    0% {
+        transform: translateY(0);
+        height: 100vh;
+    }
+    100% {
+        transform: translateY(50rem);
+        height: 0vh;
+    }
+}
