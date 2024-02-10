@@ -40,7 +40,7 @@ public class SecurityConfig {
     {
         http.authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/presentation", "/timer", "/presentation-creation", "/presentations").authenticated()
+                                // .requestMatchers("/presentation", "/timer", "/presentation-creation", "/presentations").authenticated()
                                 .anyRequest().permitAll()
 
                 )
