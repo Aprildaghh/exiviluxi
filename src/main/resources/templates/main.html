@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,13 +14,13 @@
         <div class="logo"><h1>exiviluxi</h1></div>
         <div class="sign-in-bar">
 
-            <div class="authorized" th:if="${#authentication}">
+            <div class="authorized" sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}">
                     <button th:target="@{/user/logout}" class="logout">Log Out</button>
                 </form>
             </div>
         
-            <ul class="not-authorized" th:if="${#authentication == null}">
+            <ul class="not-authorized" sec:authorize="isAnonymous()">
                 <li><button class="signin">Sign In</button></li>
                 <li><button class="signup">Sign Up</button></li>
             </ul>
@@ -30,16 +30,24 @@
 
     <main>
         <div class="content">
-            <button class="create-btn">Create Presentation</button>
+
+            <div sec:authorize="isAuthenticated()" class="presentation-creation-div">
+                <form th:action="@{/presentation-creation}" method="post" class="presentation-creation-form">
+                    <button class="create-btn" th:target="@{presentation-creation}">Create Presentation</button>
+                </form>
+            </div>
+
+            <button sec:authorize="isAnonymous()" class="create-btn presentation-show-signin create-btn-anonymous">Create Presentation</button>
+
             <button class="help-button">What does that button do?</button>
             
             <div class="informative">
                 <ul>
                     <li>Create a presentation like page or a video with a nice and memorial background to send it to your loved ones.</li>
                     <li>After creating your special presentation take the generated qr code and give it to your loved one as a gift with a basket of flowers.</li>
-                    <li>The site will be locked till the specified time.</li>
+                    <li>The presentation will be locked till the specified time.</li>
                     <li>After the timer is finished and the needed password is entered your loved one can see how much you love them.</li>
-                    <li>Only thing you need to do is to just Click the button that says "Create Presentation"!</li>
+                    <li>Only thing you need to do is to just click the button that says "Create Presentation"!</li>
                 </ul>
             </div>
             
@@ -49,11 +57,12 @@
     <div class="signinModal">
         <form th:action="@{/user/signin}" th:object="${user}" method="POST" class="signin-form">
             
-            
+            <!--
             <div class="wrong-credentials-error" th:if="#{param.wrong-credentials}">
                 <h3>Wrong Credentials</h3>
             </div>
-            
+            -->
+
             <div class="signin-username">
                 <label for="signin-username">Username: </label>
                 <input th:field="*{username}" placeholder="USERNAME" type="text" id="signin-username">

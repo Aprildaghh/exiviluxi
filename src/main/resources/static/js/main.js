@@ -1,53 +1,81 @@
-// sign up button modal popup
-const signupBtn = document.querySelector(".signup");
-const signupModal = document.querySelector(".signupModal");
-const signupTosigninBtn = document.querySelector(".signup-to-signin");
+// wait for the content to load
+window.addEventListener("DOMContentLoaded", () => {
 
-signupBtn.addEventListener("click", () => {openModal(signupModal)});
+    // sign up button modal popup
+    const signupBtn = document.querySelector(".signup");
+    const signupModal = document.querySelector(".signupModal");
+    const signupTosigninBtn = document.querySelector(".signup-to-signin");
 
-signupModal.addEventListener("click", () => {closeSignModal(signupModal)});
+    if(signupBtn)
+        signupBtn.addEventListener("click", () => {openModal(signupModal)});
 
-signupTosigninBtn.addEventListener("click", () => {
-    closeSignModal(signupModal);
-    openModal(signinModal);
+    signupModal.addEventListener("click", (e) => {closeSignModalWithEl(e, signupModal)});
+
+    signupTosigninBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeSignModal(signupModal);
+        openModal(signinModal);
+    })
+
+    // sign in button modal popup
+    const signinBtn = document.querySelector(".signin");
+    const signinModal = document.querySelector(".signinModal");
+    const signinTosignupBtn = document.querySelector(".signin-to-signup");
+
+    if(signinBtn)
+        signinBtn.addEventListener("click", () => {openModal(signinModal)})
+
+    signinModal.addEventListener("click", (e) => {closeSignModalWithEl(e, signinModal)})
+
+    signinTosignupBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeSignModal(signinModal);
+        openModal(signupModal);
+    })
+
+    // help button modal popup
+    const helpBtn = document.querySelector(".help-button");
+    const informative = document.querySelector(".informative");
+
+    helpBtn.addEventListener("click", () => {openModal(informative)})
+
+    informative.addEventListener("click", () => {
+        informative.style.animation = "informativeSlideDown ease 0.5s";
+        setTimeout(() => {
+            informative.style.display = "none";
+        }, 480);
+    })
+
+    // presentation button sign in modal popup
+    const presentation_show_signin = document.querySelector(".presentation-show-signin");
+
+    if(presentation_show_signin)
+        presentation_show_signin.addEventListener("click", () => {openModal(signinModal)});
+
+    function closeSignModal(modal)
+    {
+        modal.style.animation = "signSlideDown ease 0.5s";
+                setTimeout(() => {
+                    modal.style.display = "none";
+                }, 480);
+    }
+
+    function closeSignModalWithEl(el, modal) {
+
+        if(el.target != modal) return;
+
+        modal.style.animation = "signSlideDown ease 0.5s";
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 480);
+
+    }
+
+    function openModal(modal) {
+        modal.style.display = "block";
+        modal.style.animation = "modalOpen ease 0.5s";
+    }
+
 })
 
-// sign in button modal popup
-const signinBtn = document.querySelector(".signin");
-const signinModal = document.querySelector(".signinModal");
-const signinTosignupBtn = document.querySelector(".signin-to-signup");
 
-signinBtn.addEventListener("click", () => {openModal(signinModal)})
-
-signinModal.addEventListener("click", () => {closeSignModal(signinModal)})
-
-signinTosignupBtn.addEventListener("click", () => {
-    closeSignModal(signinModal);
-    openModal(signupModal);
-})
-
-// help button modal popup
-const helpBtn = document.querySelector(".help-button");
-const informative = document.querySelector(".informative");
-
-helpBtn.addEventListener("click", () => {openModal(informative)})
-
-informative.addEventListener("click", () => {
-    informative.style.animation = "informativeSlideDown ease 0.5s";
-    setTimeout(() => {
-        informative.style.display = "none";
-    }, 480);
-})
-
-function closeSignModal(modal) {
-    modal.style.animation = "signSlideDown ease 0.5s";
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 480);
-    
-}
-
-function openModal(modal) {
-    modal.style.display = "block";
-    modal.style.animation = "modalOpen ease 0.5s";
-}

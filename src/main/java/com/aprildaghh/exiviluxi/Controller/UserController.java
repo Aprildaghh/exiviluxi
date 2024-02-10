@@ -22,4 +22,18 @@ public class UserController {
         return null;
     }
 
+    @RequestMapping("/details")
+    public String details(){return "details";}
+
+    /*
+    - show users all presentations and give info about them
+    ( user can see the url and generate qr if user wants, user can delete the presentation,
+    user can see the presentation without entering the password for the presentation)
+     */
+    @RequestMapping("/presentations")
+    public String presentationsPageForUser()
+    {
+        return "presentations-for-user";
+    }
+
 }
