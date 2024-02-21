@@ -1,2 +1,1 @@
-1. complete dao's
-2. complete timer page
+1. complete presentation page

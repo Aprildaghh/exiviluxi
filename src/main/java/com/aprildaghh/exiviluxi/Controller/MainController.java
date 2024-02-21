@@ -1,5 +1,6 @@
 package com.aprildaghh.exiviluxi.Controller;
 
+import com.aprildaghh.exiviluxi.Model.PresentationEntity;
 import com.aprildaghh.exiviluxi.Service.PresentationService;
 import com.aprildaghh.exiviluxi.User.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.LocalDate;
 
 @Controller
 public class MainController {
@@ -22,25 +25,28 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("/timer")
-    public String timerPage(Model model, @PathVariable int id)
+    @RequestMapping("/timer/{id}")
+    public String timerPage(Model model, @PathVariable("id") int id)
     {
         model.addAttribute("presentation", presentationService.getSinglePresentation(id));
 
         return "timer";
     }
 
-    /*
-    - before showing the presentation ask for a password
-	- this page will include the video presentation for the gifted person
-	- if the date is yet to come then redirect to the timer page
-	- display the page as it is created in the presentation creation page
-     */
-    @RequestMapping("/presentation")
-    public String presentationPage(@PathVariable int id)
-    {
-        // check if the date is yet to come if it is then redirect to the timer page with the same id
 
+    @RequestMapping("/presentation/{id}")
+    public String presentationPage(@PathVariable("id") String id, Model model)
+    {
+        PresentationEntity presentation = presentationService.getSinglePresentation(Integer.parseInt(id));
+
+        LocalDate date = presentation.getDate().toLocalDate();
+
+        if(date.isAfter(LocalDate.now()))
+        {
+            return "redirect:/timer/"+id;
+        }
+
+        model.addAttribute("pres", presentation);
 
         return "presentation";
     }

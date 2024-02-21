@@ -29,10 +29,10 @@ public class PresentationDao {
 
     @Transactional
     public PresentationEntity readById(int presentationId) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
 
         Query<PresentationEntity> query = session.createQuery("""
-                select * from PresentationEntity p were p.id = :id
+                from PresentationEntity PE where PE.id = :id
                 """, PresentationEntity.class)
                 .setParameter("id", presentationId);
 
@@ -45,12 +45,15 @@ public class PresentationDao {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("""
-                update PresentationEntity(date, password, user) values
-                ( :date , :password , :user ) where PresentationEntity.id = :id
+                update PresentationEntity(date, password, user, videoUrl, backgroundColor, backgroundUrl) values
+                ( :date , :password , :user , :video_url , :background_color , :background_url ) where PresentationEntity.id = :id
                 """)
                 .setParameter("id", presentationEntity.getId())
                 .setParameter("date", presentationEntity.getDate())
                 .setParameter("password", presentationEntity.getPassword())
+                .setParameter("video_url", presentationEntity.getVideoUrl())
+                .setParameter("background_color", presentationEntity.getBackgroundColor())
+                .setParameter("background_url", presentationEntity.getBackgroundUrl())
                 .setParameter("user", presentationEntity.getUser());
 
         query.executeUpdate();
@@ -64,11 +67,14 @@ public class PresentationDao {
         // save intention to db
         Query query = session.createQuery(
                         """
-                                insert into PresentationEntity(date, password, user)
-                                values ( :date , :password , :user )
+                                insert into PresentationEntity(date, password, user, videoUrl, backgroundColor, backgroundUrl)
+                                values ( :date , :password , :user , :video_url , :background_color , :background_url )
                                 """)
                 .setParameter("date", presentation.getDate())
                 .setParameter("password", presentation.getPassword())
+                .setParameter("video_url", presentation.getVideoUrl())
+                .setParameter("background_color", presentation.getBackgroundColor())
+                .setParameter("background_url", presentation.getBackgroundUrl())
                 .setParameter("user", presentation.getUser());
 
         query.executeUpdate();
