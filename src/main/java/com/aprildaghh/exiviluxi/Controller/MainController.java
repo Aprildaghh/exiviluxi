@@ -1,12 +1,16 @@
 package com.aprildaghh.exiviluxi.Controller;
 
+import com.aprildaghh.exiviluxi.Model.Crm.CrmPresentation;
 import com.aprildaghh.exiviluxi.Model.PresentationEntity;
+import com.aprildaghh.exiviluxi.Model.UserEntity;
 import com.aprildaghh.exiviluxi.Service.PresentationService;
-import com.aprildaghh.exiviluxi.User.CrmUser;
+import com.aprildaghh.exiviluxi.Model.Crm.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
@@ -51,17 +55,45 @@ public class MainController {
         return "presentation";
     }
 
-    /*
-    - show the page to create a presentation
-	- save the html and css file to the presentations/{id} folder in the project
-	- create a qr for the user and create a password for the presentation
-	- show a wordpress like page to edit a page. Just add options to change the background image or color, option to link a youtube video to the page.
-	- show an option to print the qr
-     */
     @RequestMapping("presentation-creation")
-    public String presentationCreationPage()
+    public String presentationCreationPage(Model model)
     {
+        CrmPresentation presentation = new CrmPresentation();
+
+        model.addAttribute("presentation", presentation);
+
         return "presentation-creation";
+    }
+
+    // shows the password, the qr and a message that says "presentation creation complete" and a button to go to /user/presentations
+    @PostMapping("creation")
+    public String creation(@ModelAttribute CrmPresentation presentation, Model model)
+    {
+        if(presentation.getDate() == null)
+        {
+            return "redirect:/presentation-creation?no-date";
+        }
+        else if (presentation.getVideoUrl() == null && presentation.getBackgroundUrl() == null && presentation.getBackgroundColor() == null)
+        {
+            return "redirect:/presentation-creation?blank-presentation";
+        }
+
+        // TODO: create a random password for presentation
+
+
+        model.addAttribute("password", presentation.getPassword());
+
+        UserEntity currentUser = null;
+
+        // invert CrmPresentation to PresentationEntity
+        PresentationEntity presentationEntity = new PresentationEntity(
+                0, presentation.getDate(), presentation.getPassword(), presentation.getVideoUrl(),
+                presentation.getBackgroundColor(), presentation.getBackgroundUrl(), currentUser
+        );
+
+        presentationService.addPresentation(presentationEntity);
+
+        return "creation";
     }
 
 }

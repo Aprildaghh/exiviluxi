@@ -1,0 +1,195 @@
+:root {
+    --white: #fff;
+    --black: #000000;
+    --sec: #1f1e1e;
+    --third: #717070;
+    --fourth: #858484;
+    --fifth: #AAA9A9;
+}
+
+html {
+    max-height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-height: 100vh;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    background-color: #000000;
+    color: var(--fifth);
+}
+
+.hide {
+    display: none;
+    width: 100vw;
+    height: 1000vh;
+    z-index: 0;
+    background-color: black;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    margin: 10vh 0;
+}
+
+
+.color {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.color > * {
+    padding: auto;
+    margin: auto;
+}
+
+.color-label {
+    background-color: rgb(10,10,10);
+    width: 100%;
+    border: 1px solid var(--fourth);
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    user-select: none;
+    text-transform: uppercase;
+    margin: 20px;
+    justify-content: center;
+    text-align: center;
+    display: table;
+}
+
+.color-label > p {
+    margin: 0;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 1.2rem;
+}
+
+.image,
+.date-container,
+.youtube-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-label {
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}
+
+.youtube-link-label {
+    text-transform: uppercase;
+    font-size: 1.5rem
+}
+
+.image-url,
+.youtube-url {
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.date-label {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+.date {
+    width: 25%;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.buttons {
+    width: 25%;
+    margin-top: 3rem;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.showcase, .create-btn {
+    border: 1px solid var(--fifth);
+    text-align: center;
+    border-radius: 5rem;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.create-btn {
+    background-color: var(--black);
+    color: var(--fifth);
+    font-weight: bold;
+}
+
+.showcase:hover, .create-btn:hover {
+    border: 1px solid var(--sec);
+    background-color: var(--fifth);
+    color: black;
+}
+
+.error {
+    display: none;
+}
+
+
+.red-span, .green-span, .blue-span,
+.youtube-link-label, .image-label, .date-label
+{
+    user-select: none;
+}
+
+.gift-section {
+    width: 98%;
+    min-height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: no-repeat fixed center;
+}
+
+.gift-video {
+    width: 65%;
+    height: 65%;
+    border-radius: 5px;
+}
+
+.showcase-modal {
+    position: absolute;
+    top: 15vh;
+    right: 15vw;
+    height: 70vh;
+    width: 70vw;
+    z-index: 1;
+    background-color: var(--sec);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+
+}
+
+

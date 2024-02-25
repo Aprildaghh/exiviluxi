@@ -1,4 +1,4 @@
-package com.aprildaghh.exiviluxi.User;
+package com.aprildaghh.exiviluxi.Model.Crm;
 
 import com.aprildaghh.exiviluxi.Validation.FieldMatch;
 import jakarta.validation.constraints.NotNull;

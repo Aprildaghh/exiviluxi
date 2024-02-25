@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exiviluxi - Creation</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/presentation-creation.css}">
+    <link rel="stylesheet" href="../static/css/presentation-creation.css">
+
+</head>
+<body>
+
+  <!--
+    - show the page to set a link of a photo for background, select a color for the page background and option to paste a link to a youtube video.
+    - there is a create button which showcases the page in a modal. In the modal there will be the showcase and a DONE button.
+    - after pressing the done button show "Presentation is created.", an image of a qr to the presentation and a button to download the qr code. this qr stuff thing will be a modal too
+  -->
+
+  <div class="hide"></div>
+
+  <form th:action="@{/creation}" method="post" class="container" th:object="${presentation}">
+  
+    <div class="color">
+      <div class="color-label">
+        <p>Select background color</p>
+      </div>
+      <span class="red-span"><h3>Red</h3><input type="range" min="0" max="255" value="10" class="red-choice"></span>
+      <span class="green-span"><h3>Green</h3><input type="range" min="0" max="255" value="10" class="green-choice"></span>
+      <span class="blue-span"><h3>Blue</h3><input type="range" min="0" max="255" value="10" class="blue-choice"></span>
+    </div>
+    <input id="color-input" type="hidden" name="color" th:field="*{backgroundColor}">
+
+    <div class="image">
+      <h2 class="image-label">Enter a image url for a background</h2>
+      <input th:object="*{backgroundUrl}" type="text"class="image-url" placeholder="Ex: https://i.imgflip.com/7pkk0x.jpg">
+    </div>
+
+    <div class="youtube-link">
+      <h2 class="youtube-link-label">Enter a youtube url for a video</h2>
+      <input th:object="*{videoUrl}" type="text"class="youtube-url" placeholder="Ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+    </div>
+
+    <div class="date-container">
+      <h2 class="date-label">Enter a date for presentation to open (must have!)</h2>
+      <input th:object="*{date}" type="date" class="date">
+    </div>
+    
+    <div class="buttons">
+      <div class="showcase">Showcase</div>
+      <button class="create-btn" type="submit">Create</button>
+    </div>
+
+    <div class="error"></div>
+
+  </form>
+
+
+
+  <div class="showcase-modal">
+    <div class="gift-section">
+        <iframe src="" class="gift-video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="../static/js/presentation-creation.js"></script>
+  <script th:src="@{/js/presentation-creation.js}"></script>
+
+</body>
+</html>
