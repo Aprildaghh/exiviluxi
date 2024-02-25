@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Exiviluxi - Presentation Creation</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script
+      src="https://kit.fontawesome.com/1935d064dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/creation.css}">
+    <link rel="stylesheet" href="/static/css/creation.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Presentation Creation Successful</h1>
+        <div class="qr-container">
+            <img th:src="|https://api.qrserver.com/v1/create-qr-code/?data=@{/presentation}/${id}&amp;size=100x100|" alt="QR">
+        </div>
+        <div class="password"><p th:text="| Password: ${password} |">Password: asdfasfdgsag</p></div>
+        <a th:href="@{/user/presentations}" class="go-back"> <i class="fas fa-solid fa-arrow-left"></i> See all your presentations</a>
+    </div>
+
+</body>
+</html>

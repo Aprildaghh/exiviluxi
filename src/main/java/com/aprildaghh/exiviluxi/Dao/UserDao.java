@@ -74,4 +74,17 @@ public class UserDao {
         query.executeUpdate();
 
     }
+
+
+    @Transactional
+    public UserEntity getUserWithUsername(String username) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<UserEntity> query = session.createQuery("""
+                select * from UserEntity u were u.username = :username
+                """, UserEntity.class)
+                .setParameter("username", username);
+
+        return query.getSingleResult();
+    }
 }

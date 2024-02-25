@@ -25,9 +25,9 @@ public class PresentationService {
         return userDao.readById(user_id).getPresentations();
     }
 
-    public void addPresentation(PresentationEntity presentation)
+    public int addPresentation(PresentationEntity presentation)
     {
-        presentationDao.create(presentation);
+        return presentationDao.create(presentation);
     }
 
     public void deletePresentation(int presentation_id)

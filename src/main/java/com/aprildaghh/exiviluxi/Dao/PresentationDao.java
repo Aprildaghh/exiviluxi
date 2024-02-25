@@ -60,7 +60,7 @@ public class PresentationDao {
     }
 
     @Transactional
-    public void create(PresentationEntity presentation) {
+    public int create(PresentationEntity presentation) {
 
         Session session = sessionFactory.getCurrentSession();
 
@@ -78,6 +78,8 @@ public class PresentationDao {
                 .setParameter("user", presentation.getUser());
 
         query.executeUpdate();
+
+        return presentation.getId();
 
     }
 }

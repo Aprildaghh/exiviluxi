@@ -31,4 +31,6 @@ public class UserService {
         return userDao.readById(id);
     }
 
+    public UserEntity getUserWithUsername(String username) { return userDao.getUserWithUsername(username);}
+
 }
