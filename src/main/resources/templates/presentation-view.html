@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exiviluxi - Presentation View</title>
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-height: 100vh;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    background-color: #000000;
+    color: #AAA9A9;
+}
+
+.gift-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: no-repeat fixed center;
+}
+
+.gift-video {
+    width: 65%;
+    height: 65vh;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+    
+
+    <div class="gift-section" th:style="|background-color: ${presentation.backgroundColor}; background-image: url('${presentation.backgroundUrl}')|">
+        <iframe th:src="|https://www.youtube.com/embed/${presentation.videoUrl}|" class="gift-video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+
+</body>
+</html>

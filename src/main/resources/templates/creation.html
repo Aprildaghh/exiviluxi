@@ -21,8 +21,8 @@
         <div class="qr-container">
             <img th:src="|https://api.qrserver.com/v1/create-qr-code/?data=@{/presentation}/${id}&amp;size=100x100|" alt="QR">
         </div>
-        <div class="password"><p th:text="| Password: ${password} |">Password: asdfasfdgsag</p></div>
-        <a th:href="@{/user/presentations}" class="go-back"> <i class="fas fa-solid fa-arrow-left"></i> See all your presentations</a>
+        <div class="password"><p th:text="| Password: ${password} |">Password: </p></div>
+        <a th:href="@{/}" class="go-back"> <i class="fas fa-solid fa-arrow-left"></i> Go to main page</a>
     </div>
 
 </body>

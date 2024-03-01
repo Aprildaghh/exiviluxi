@@ -10,7 +10,7 @@
     <div class="container">
         <div class="date" th:text="${presentation.date}">2024-02-11</div>
         <div class="timer"></div>
-        <a class="presentation-button" th:href="@{/presentation/${presentation.id}}">TO PRESENTATION</a>
+        <a class="presentation-button" th:href="@{/presentation/{id}(id=${presentation.id})}">TO PRESENTATION</a>
     </div>
 
     <script th:src="@{/js/timer.js}"></script>

@@ -1,12 +1,8 @@
 package com.aprildaghh.exiviluxi.Controller;
 
-import com.aprildaghh.exiviluxi.Model.Crm.CrmPresentation;
 import com.aprildaghh.exiviluxi.Model.PresentationEntity;
 import com.aprildaghh.exiviluxi.Service.PresentationService;
-import com.aprildaghh.exiviluxi.Model.Crm.CrmUser;
-import com.aprildaghh.exiviluxi.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 @Controller
@@ -22,14 +19,10 @@ public class MainController {
 
     @Autowired
     private PresentationService presentationService;
-    @Autowired
-    private UserService userService;
 
     @RequestMapping("/")
-    public String mainPage(Model model)
+    public String mainPage()
     {
-        CrmUser user = new CrmUser();
-        model.addAttribute("user", user);
         return "main";
     }
 
@@ -54,15 +47,36 @@ public class MainController {
             return "redirect:/timer/"+id;
         }
 
-        model.addAttribute("pres", presentation);
+        presentation.setPassword("");
+        model.addAttribute("presentation", presentation);
 
         return "presentation";
+    }
+
+    @RequestMapping("/presentation-password-confirmation/{id}")
+    public String presentationPasswordConfirmationPage(@PathVariable("id") String id, @ModelAttribute PresentationEntity pres)
+    {
+        String password = presentationService.getSinglePresentation(Integer.parseInt(id)).getPassword();
+
+        if(Objects.equals(password, pres.getPassword()))
+        {
+            return "redirect:/presentation-view/"+id;
+        }
+        return "redirect:/presentation/"+id;
+    }
+
+    @RequestMapping("/presentation-view/{id}")
+    public String presentationViewPage(@PathVariable("id") String id, Model model)
+    {
+        PresentationEntity pres = presentationService.getSinglePresentation(Integer.parseInt(id));
+        model.addAttribute("presentation", pres);
+        return "presentation-view";
     }
 
     @RequestMapping("presentation-creation")
     public String presentationCreationPage(Model model)
     {
-        CrmPresentation presentation = new CrmPresentation();
+        PresentationEntity presentation = new PresentationEntity();
 
         model.addAttribute("presentation", presentation);
 
@@ -70,7 +84,7 @@ public class MainController {
     }
 
     @RequestMapping("creation")
-    public String creation(@ModelAttribute CrmPresentation presentation, Model model)
+    public String creation(@ModelAttribute PresentationEntity presentation, Model model)
     {
         if(presentation.getDate() == null)
         {
@@ -84,19 +98,13 @@ public class MainController {
         String password = createRandomPassword();
 
         presentation.setPassword(password);
+        presentation.setVideoUrl(presentation.getVideoUrl().substring(presentation.getVideoUrl().indexOf('=')+1));
 
-        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // invert CrmPresentation to PresentationEntity
-        PresentationEntity presentationEntity = new PresentationEntity(
-                0, presentation.getDate(), presentation.getPassword(), presentation.getVideoUrl(),
-                presentation.getBackgroundColor(), presentation.getBackgroundUrl(), userService.getUserWithUsername(username)
-        );
-
-        int id = presentationService.addPresentation(presentationEntity);
+        presentationService.addPresentation(presentation);
 
         model.addAttribute("password", password);
-        model.addAttribute("id", id);
+        model.addAttribute("id", presentation.getId());
 
         return "creation";
     }

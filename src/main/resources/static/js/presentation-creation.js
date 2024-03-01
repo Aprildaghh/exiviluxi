@@ -5,10 +5,10 @@ const blue = document.querySelector(".blue-choice");
 const colorLabel = document.querySelector(".color-label");
 const colorInput = document.getElementById("color-input");
 
-colorInput.value = `rgb(${red.value}, ${green.value}, ${blue.value})`;
-
 setInterval(() => {
-    colorLabel.style.backgroundColor = `rgb(${red.value}, ${green.value}, ${blue.value})`;
+    const newColor = `rgb(${red.value}, ${green.value}, ${blue.value})`
+    colorLabel.style.backgroundColor = newColor;
+    colorInput.value = newColor;
 }, 40);
 
 // show up showcase modal and set up the gift section

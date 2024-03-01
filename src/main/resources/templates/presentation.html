@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exiviluxi Presentation</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/presentation.css}">
+    <link rel="stylesheet" href="/static/css/presentation.css">
 </head>
 <body>
+
     
-    <div class="greeting-modal">
-        <h1>YOUR GIFT IS READY</h1>
-        <button type="button" class="open-button">OPEN</button>
+    <div class="container">
+        <h1>Your gift is ready</h1>
+        <form th:action="@{/presentation-password-confirmation/{id}(id=${presentation.id})}" th:object="${presentation}">
+            <div class="input">
+                <label for="password">Password: </label>
+                <input placeholder="password" type="password" name="password" id="password" th:field="*{password}">
+
+            </div>
+            <button type="submit" class="open-button">OPEN</button>
+        </form>
     </div>
 
-
-    <div class="gift-section" th:style="|background-color: ${pres.backgroundColor}; background-image: url('${pres.backgroundUrl}')|">
-        <iframe th:src="|https://www.youtube.com/embed/${pres.videoUrl}|" class="gift-video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-
-    <script th:src="@{/js/presentation.js}"></script>
 </body>
 </html>

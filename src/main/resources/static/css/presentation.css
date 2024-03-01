@@ -16,46 +16,52 @@
 
 body {
     background-color: #000000;
+    color: var(--white);
 }
 
-.greeting-modal {
-    width: 100%;
-    height: 100vh;
-    background-color: black;
+.container{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    max-height: 100vh;
 }
 
-.greeting-modal > h1 {
-    color: white;
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
     font-size: 4rem;
-    padding-bottom: 1rem;
 }
 
-.open-button {
-    font-size: 2rem;
-    outline: none;
-    border: 1px solid var(--third);
-    border-radius: 15px;
-    padding: 1rem;
-    cursor: pointer;
-}
-
-.gift-section {
-    width: 100%;
-    height: 100vh;
+form {
+    margin-top: 15rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: none;
-    background: no-repeat fixed center;
+    flex-direction: column;
 }
 
-.gift-video {
-    width: 65%;
-    height: 65%;
+form label{
+    font-size: 3rem;
+
+}
+
+form input {
+    outline: none;
+    border: 3px solid var(--sec);
     border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+    transform: translateY(-5px);
+}
+
+form > button {
+    margin-top: 5rem;
+    outline: none;
+    border: 3px solid var(--third);
+    border-radius: 5px;
+    font-size:x-large;
+    padding: 10px;
+    cursor: pointer;
 }
